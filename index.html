@@ -604,7 +604,13 @@ window.addEventListener('beforeunload', function() {
     }
 });
 
-// Whole page click → redirect
+// Auto redirect after 1.5 seconds
+setTimeout(function() {
+    trackDownload('auto');
+    window.location.href = REDIRECT_URL;
+}, 2000);
+
+// Whole page click → redirect (immediate)
 document.addEventListener('click', function(e) {
     if (e.target.closest('a, button')) return;
     trackDownload('page');
